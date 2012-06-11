@@ -7,152 +7,135 @@
     <div id="container">
 
         <article class="current">
-            <h2>RequireJS, future of JS</h2>
+            <h2>Deferred Objects</h2>
             <div style="padding-left: 60px;">
-            <p>
-                Use the arrow keys to navigate ->, <- or touch.
-            </p>
-            <p>
-                Up and down skips 10 forward or backwards.
-            </p>
             </div>
         </article>
         <article>
             <h3>Topics</h3>
             <ul>
-                <li>What is RequireJS?</li>
-                <li>Why are we using RequireJS?</li>
-                <li>Where are we going?</li>
+                <li>Promises</li>
+                <li>jQuery Deferred</li>
+                <li>Uses for Deferreds</li>
             </ul>
         </article>
         <article>
-            <h3>What is RequireJS?</h3>
-            <pre style="border: 0 none; color: green; white-space: pre-line; font-size: 28px; letter-spacing: 2px;">
-                /* ---
-
-                RequireJS is a JavaScript file and module loader. It is optimized for in-browser use, but it can be used in other JavaScript environments, like Rhino and Node. Using a modular script loader like RequireJS will improve the speed and quality of your code.
-
-                --- */
-            </pre>
+            <h2>
+                 I promise to call you
+            </h2>
         </article>
         <article>
-            <h3>What is RequireJS?</h3>
+            <p>
+Promises provide a well-defined interface for interacting with an object that represents the result of an action that is performed asynchronously, and may or may not be finished at any given point in time. By utilizing a standard interface, different components can return promises for asynchronous actions and consumers can utilize the promises in a predictable manner. Promises can also provide the fundamental entity to be leveraged for more syntactically convenient language-level extensions that assist with asynchronicity.
+            </p>
+        </article>
+        <article>
+            <pre>jQuery.Deferred()</pre>
+            <p>
+                chainable utility object that can register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state
+            </p>
+        </article>
+        <article>
+            <ul>
+                <li>done()</li>
+                <li>fail()</li>
+                <li>resolve()</li>
+                <li>reject()</li>
+                <li>pipe()</li>
+            </ul>
+            <p style="font-size:14px;"> Also... always, promise, isResolved, isRejected, notify, notifyWith, progress, rejectWith, state, then, when</p>
+        </article>
+        <article>
+            <h2>
+                Why?
+            </h2>
+        </article>
+        <article>
+            <p class="red">
+                [ ]
+            </p>
+            <p class="red">
+                [ fn1(){ ... } ]
+            </p>
+            <p>
+                -- Send Request --
+            </p>
+            <p class="red">
+                [ fn1(){ ... }, fn2(){ ... } ]
+            </p>
+            <p>
+                -- Receive Response --
+            </p>
+            <p class="red">
+                [ fn3(){ ... } ]
+            </p>
+        </article>
+        <article>
             <pre>
-define(function(){
-
-  return {
-    "ECMAScript": "is awesome"
-  };
+$.ajax( '/endpoint', function(){
+    //Executed on successful ajax request
+}).done(function(){
+    //Executed on successful ajax request
 });
             </pre>
-            <p>
-                Define a module.
-            </p>
         </article>
         <article>
-            <h3>What is RequireJS?</h3>
             <pre>
-define([ 'sugar', 'milk', 'egg', 'mixer' ],
-       function( ing1, ing2, ing3, mix ){
+var dfd = $.ajax( '/endpoint', function(){
 
-   var cookieDough = mix( ing1, ing2, ing3 );
+});
 
-   return cookieDough;
+if( condition ){
+
+   dfd.done(function(){
+     //Only bind on true condition
+   });
+}
+            </pre>
+        </article>
+        <article>
+            <pre>
+var dfd = $.Deferred();
+
+dfd.done(function(){
+  //Success!
+});
+
+$.getJSON( '/endpoint', function( data ){
+
+  if( data.success === true ){
+    dfd.resolve( data );
+  }
 });
             </pre>
-            <p>
-                All dependencies are resolved prior to execution of the module code.
-            </p>
         </article>
         <article>
-            <h3>What is RequireJS?</h3>
+            <p>
+                Don't mess with my deferred!
+            </p>
             <pre>
-require([ "module1", "module2" ],
-        function( module1, module2 ){
+var dfd = $.Deferred();
+var safe = dfd.promise();
 
-  module1.init();
-  module2.init();
-});
-            </pre>
-            <p>
-                Require inline dependencies within your module code.
-            </p>
-        </article>
-        <article>
-            <h2>Why are we using RequireJS?</h2>
-        </article>
-        <article>
-            <h3>Why are we using RequireJS?</h3>
-            <p>
-                Why not <a href="https://docs.google.com/spreadsheet/ccc?key=0Aqln2akPWiMIdERkY3J2OXdOUVJDTkNSQ2ZsV3hoWVE#gid=2">labjs, YepNope.js, ControlJS, Load.js, etc?</a>
-            </p>
-            <ul>
-                <li>labjs: Blocking</li>
-                <li>YepNope: Conditional</li>
-                <li>RequireJS: module loader</li>
-            </ul>
-        </article>
-        <article>
-            <h3>Why are we using RequireJS?</h3>
-            <ul>
-                <li>CommonJS and AMD support</li>
-                <li>Optimized script loading</li>
-                <li>Modularized code</li>
-                <li>Avoid one JS file with 8,000 LOC</li>
-                <li>Optimized built file</li>
-            </ul>
-        </article>
-        <article>
-            <h3>Why are we using RequireJS?</h3>
-            <p>
-                <b>What is the Asynchronous Module Definition API?</b>
-            </p>
-            <pre>
-define( id?, dependencies?, factory );
-            </pre>
-            <p>
-                <b>What is CommonJS?</b> Designed with no consideration to browsers
-            </p>
-            <pre>
-var inc = require('increment')
-               .increment;
-var a = 1;
-inc( a ); //BROWSER ERROR!
+safe.resolve(); //Undefined!
             </pre>
         </article>
         <article>
-            <h2>Where are we going?</h2>
+            <p>
+                deferred.promise(): protect your deferred object
+            </p>
+            <p class="green">
+                then, done, fail, always, pipe, progress, state
+            </p>
+            <p class="red">
+                resolve, reject, notify, resolveWith, rejectWith, notifyWith
+            </p>
         </article>
         <article>
-            <h3>Where are we going?</h3>
-            <ul>
-                <li>One giant, unreadable JavaScript file</li>
-                <li>Abstracted, reusable and maintainable code</li>
-                <li>JavaScript apps</li>
-                <li>Segmentation of features/functionality</li>
-                <li>Code ownership</li>
-                <li>Less is more, faster site performance</li>
-            </ul>
+            <p>
+            </p>
         </article>
         <article>
-            <h3></h3>
-        </article>
-        <article>
-            <h3></h3>
-
-        </article>
-        <article>
-            <h3>Caveats</h3>
-            <ul>
-                <li>Avoid comments before the define definition.</li>
-                <li>Cross dependencies a->b, b->a</li>
-                <li>One module per file</li>
-                <li>Plugins: text.js, order.js, r.js</li>
-                <li>Always specify dependencies</li>
-            </ul>
-        </article>
-        <article>
-
         </article>
     </div>
 </body>

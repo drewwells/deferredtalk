@@ -137,7 +137,12 @@ pre {
 ul {
     line-height: 2em;
 }
-
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
 
 .center{
 
