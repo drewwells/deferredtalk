@@ -1,7 +1,8 @@
 <!DOCTYPE>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="github.css" />
 </head>
 <body>
     <div id="container">
@@ -12,12 +13,14 @@
             </div>
         </article>
         <article>
-            <h3>Topics</h3>
-            <ul>
-                <li>Promises</li>
-                <li>jQuery Deferred</li>
-                <li>Uses for Deferreds</li>
-            </ul>
+            <p>
+            @coldfuser
+            </p>
+        </article>
+        <article>
+            <p>
+            drewwells
+            </p>
         </article>
         <article>
             <h2>
@@ -27,6 +30,12 @@
         <article>
             <p>
 Promises provide a well-defined interface for interacting with an object that represents the result of an action that is performed asynchronously, and may or may not be finished at any given point in time. By utilizing a standard interface, different components can return promises for asynchronous actions and consumers can utilize the promises in a predictable manner. Promises can also provide the fundamental entity to be leveraged for more syntactically convenient language-level extensions that assist with asynchronicity.
+            </p>
+        </article>
+        <article>
+            <a href="http://stackoverflow.com/users/75192/julian-aubourg"><img src="http://s3.amazonaws.com/files.posterous.com/headers/2297686/scaled500.png" /></a>
+            <p style="font-size: 14px;">
+                Credits: <a target="blank" href="http://jaubourg.net/">http://jaubourg.net/</a>, Logo designed by <a href="http://zetafleet.com/" target="_blank">Colin Snover</a>
             </p>
         </article>
         <article>
@@ -42,8 +51,9 @@ Promises provide a well-defined interface for interacting with an object that re
                 <li>resolve()</li>
                 <li>reject()</li>
                 <li>pipe()</li>
+                <li>promise()</li>
             </ul>
-            <p style="font-size:14px;"> Also... always, promise, isResolved, isRejected, notify, notifyWith, progress, rejectWith, state, then, when</p>
+            <p style="font-size:18px;" class="rainbow"> Also... always, isResolved, isRejected, notify, notifyWith, progress, rejectWith, state, then, when</p>
         </article>
         <article>
             <h2>
@@ -52,49 +62,76 @@ Promises provide a well-defined interface for interacting with an object that re
         </article>
         <article>
             <p class="red">
-                [ ]
-            </p>
-            <p class="red">
-                [ fn1(){ ... } ]
+                <img src="lightning.png" class="small-lightning" />
+                [ fn1() ]
             </p>
             <p>
-                -- Send Request --
+                <img src="arrow.png"/>
             </p>
             <p class="red">
-                [ fn1(){ ... }, fn2(){ ... } ]
+                <img src="lightning.png" class="small-lightning" />
+                [ fn1(), fn2() ]
             </p>
             <p>
-                -- Receive Response --
+                <img src="arrow.png" class="flip" />
             </p>
             <p class="red">
-                [ fn3(){ ... } ]
+                <img src="lightning.png" class="small-lightning" />
+                [ fn3() ]
             </p>
         </article>
         <article>
-            <pre>
+            <pre><code>
 $.ajax( '/endpoint', function(){
-    //Executed on successful ajax request
+  //Executed on successful ajax request
 }).done(function(){
-    //Executed on successful ajax request
+  //Executed on successful ajax request
 });
-            </pre>
+            </code></pre>
         </article>
         <article>
-            <pre>
+            <pre><code>
 var dfd = $.ajax( '/endpoint', function(){
 
 });
 
-if( condition ){
+dfd.done(function(){
+    //Only bind on true condition
+});
 
-   dfd.done(function(){
-     //Only bind on true condition
-   });
-}
-            </pre>
+            </code></pre>
         </article>
         <article>
-            <pre>
+            <div class="green-triangle" style="float: left;">
+                <img src="deferred.png" class="small-deferred" />
+                <img src="lightning.png" class="small-lightning" />
+                <img src="lightning.png" class="small-lightning" />
+                <img src="lightning.png" class="small-lightning" />
+            </div>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 200px;" />
+            </p>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 200px;" class="flip" />
+            </p>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 400px;" />
+            </p>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 400px;" class="flip" />
+            </p>
+            <p class="clear">
+                <img src="arrow.png" />
+            </p>
+            <p class="clear">
+                <img src="arrow.png" class="flip" />
+            </p>
+            <p class="clear red">
+                Resolve!
+            </p>
+        </article>
+        <article>
+            <pre><code>
 var dfd = $.Deferred();
 
 dfd.done(function(){
@@ -107,39 +144,93 @@ $.getJSON( '/endpoint', function( data ){
     dfd.resolve( data );
   }
 });
-            </pre>
+            </code></pre>
         </article>
         <article>
             <p>
-                Don't mess with my deferred!
+                promise your deferred object
             </p>
-            <pre>
+            <p class="border-green" style="position: relative;">
+                then, done, fail, always, pipe, progress, state
+                <span class="green" style="position: absolute; right: 0; top: -1.1em;">OK</span>
+            </p>
+            <br/>
+            <p style="position:relative;" class="border-red">
+                resolve, reject, notify, resolveWith, rejectWith, notifyWith <span class="red" style="position: absolute; right: 0; top: -1.1em;">Not OK</span>
+            </p>
+        </article>
+        <article>
+            <pre><code>
 var dfd = $.Deferred();
 var safe = dfd.promise();
+            </code></pre>
+        </article>
+        <article>
+            <h2>Now for cool stuff</h2>
+        </article>
+        <article>
+            <pre><code>jQuery.pipe( [doneFilter] [,failFilter] )</code></pre>
+        </article>
+        <article>
+            <p>Chain Asynchronous actions</p>
+        </article>
+        <article>
+<pre><code>
+$.ajax( 'url1', function(){
 
-safe.resolve(); //Undefined!
-            </pre>
+  $.ajax( 'url2', function(){
+
+    $.ajax( 'url3', function(){});
+
+  });
+});
+</code></pre>
         </article>
         <article>
-            <p>
-                deferred.promise(): protect your deferred object
-            </p>
-            <p class="green">
-                then, done, fail, always, pipe, progress, state
-            </p>
-            <p class="red">
-                resolve, reject, notify, resolveWith, rejectWith, notifyWith
-            </p>
+            <h2>NO</h2>
         </article>
         <article>
-            <p>
-            </p>
+<pre><code>
+$.ajax( 'url1', function(){
+
+}).pipe(function(){
+
+  return $.ajax( 'url2', function(){ });
+
+}).pipe(function(){
+
+  return $.ajax( 'url3', function(){ });
+
+});
+</code></pre>
         </article>
         <article>
+<pre><code>
+function( defer ){
+
+  return defer.pipe(function(){
+
+    return $.Deferred.done(function(){
+
+      return '
+    });
+  });
+};
+</code></pre>
+        </article>
+        <article>
+            <h2>Learn more <a href="https://github.com/jquery/jquery/blob/master/src/deferred.js">jquery/src/deferred.js</a></h2>
+        </article>
+        <article>
+            <h2>Talk to a <a href="https://github.com/jquery/jquery/commit/a41f2406748e3113751ab1e5b5d990d9144123fc">jQuery contributor</a></h2>
         </article>
     </div>
 </body>
 <script type="text/javascript" src="main.js" ></script>
+<script type="text/javascript" src="highlight.pack.js" ></script>
+<script type="text/javascript">
+    hljs.initHighlighting();
+</script>
 <!--<script type="text/javascript" src="phantom-limb/phantomLimb.js" ></script>
 <script type="text/javascript">
     phantomLimb.init({

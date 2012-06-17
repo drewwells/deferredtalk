@@ -134,14 +134,65 @@ pre {
     color: #242040;
     font-size: 26px;
 }
-ul {
+li {
     line-height: 2em;
+    list-style: none;
+}
+.clear {
+    margin: 0;
+    clear: both;
+}
+.border-red {
+    border: dotted 2px red;
+    padding: 10px;
+}
+.border-green {
+    border: dotted 2px green;
+    padding: 10px;
 }
 .red {
     color: red;
 }
 .green {
     color: green;
+}
+
+.small-lightning {
+    width: 90px;
+}
+.flip {
+    -webkit-transform: rotate(180deg);
+}
+
+.rainbow {
+  background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  color:transparent;
+  -webkit-background-clip: text;
+}
+
+.green-triangle {
+    -webkit-transform: scale(0.5);
+    margin-left: -12%;
+    float: left;
+    margin: -45px -20px;
+}
+
+.green-triangle .small-lightning:nth-child(2) {
+    position: absolute;
+    top: 33%;
+    left: 33%;
+}
+
+.green-triangle .small-lightning:nth-child(3) {
+    position: absolute;
+    top: 61%;
+    left: 20%;
+}
+
+.green-triangle .small-lightning:nth-child(4) {
+    position: absolute;
+    top: 64%;
+    left: 49%;
 }
 
 .center{
