@@ -8,7 +8,7 @@
     <div id="container">
 
         <article class="current">
-            <h2>Deferred Objects</h2>
+            <h2>Promises & Deferred Objects</h2>
             <div style="padding-left: 60px;">
             </div>
         </article>
@@ -23,8 +23,35 @@
             </p>
         </article>
         <article>
+            <h2>I work for WhaleShark Media</h2>
+        </article>
+        <article>
+            <img src="employee.png" style="width: 100%; margin-top: 20%;" />
+        </article>
+        <article>
+            <div style="float: left; width: 50%;">
+                <img src="angela.png" style="width: 95%; vertical-align: top;" />
+                <p style="color: #8eb2ed;">
+                    Employee of the month
+                </p>
+            </div>
+            <img src="cotterceo.png" style="width:45%;" />
+        </article>
+        <article>
+            <img src="tvgrab.png" style="width: 100%;" />
+        </article>
+        <article>
+            <img src="angelaangry.png" style="height: 100%;" />
+        </article>
+        <article>
+            <img src="wine.png" />
+        </article>
+        <article>
+            <img src="ceosad.png" />
+        </article>
+        <article>
             <h2>
-                 I promise to call you
+                Promises
             </h2>
         </article>
         <article>
@@ -33,32 +60,63 @@ Promises provide a well-defined interface for interacting with an object that re
             </p>
         </article>
         <article>
-            <a href="http://stackoverflow.com/users/75192/julian-aubourg"><img src="http://s3.amazonaws.com/files.posterous.com/headers/2297686/scaled500.png" /></a>
+            <h2>Promises/A CommonJS Spec</h2>
+            <br/>
+            <br/>
+            <br/>
+            <p> If you're bored, <a href="http://wiki.commonjs.org/wiki/Promises/A">read more.</a>
+            </p>
+        </article>
+        <article>
+            <h2>
+                 I promise to call you
+            </h2>
+        </article>
+        <article>
+            <a target="blank" href="http://stackoverflow.com/users/75192/julian-aubourg"><img src="http://s3.amazonaws.com/files.posterous.com/headers/2297686/scaled500.png" /></a>
             <p style="font-size: 14px;">
-                Credits: <a target="blank" href="http://jaubourg.net/">http://jaubourg.net/</a>, Logo designed by <a href="http://zetafleet.com/" target="_blank">Colin Snover</a>
+                Credits: <a href="http://jaubourg.net/">http://jaubourg.net/</a>, Logo designed by <a href="http://zetafleet.com/" target="_blank">Colin Snover</a>
             </p>
         </article>
         <article>
             <pre>jQuery.Deferred()</pre>
             <p>
-                chainable utility object that can register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state
+                chainable utility object that can register multiple callbacks into callback queues and relay the success or failure state
             </p>
-        </article>
-        <article>
-            <ul>
-                <li>done()</li>
-                <li>fail()</li>
-                <li>resolve()</li>
-                <li>reject()</li>
-                <li>pipe()</li>
-                <li>promise()</li>
-            </ul>
-            <p style="font-size:18px;" class="rainbow"> Also... always, isResolved, isRejected, notify, notifyWith, progress, rejectWith, state, then, when</p>
         </article>
         <article>
             <h2>
                 Why?
             </h2>
+        </article>
+        <article>
+            <pre><code>
+$.ajax( '/endpoint', function(){
+  //Executed on successful ajax request
+})
+            </code></pre>
+        </article>
+        <article>
+            <p class="red">
+                <img src="lightning.png" class="small-lightning" />
+                [ fn1() ]
+            </p>
+            <p>
+                <img src="arrow.png"/>
+            </p>
+        </article>
+        <article>
+            <p class="red">
+                <img src="lightning.png" class="small-lightning" />
+                [ fn1() ]
+            </p>
+            <p>
+                <img src="arrow.png"/>
+            </p>
+            <p class="red">
+                <img src="lightning.png" class="small-lightning" />
+                [ fn1(), fn2() ]
+            </p>
         </article>
         <article>
             <p class="red">
@@ -84,22 +142,124 @@ Promises provide a well-defined interface for interacting with an object that re
             <pre><code>
 $.ajax( '/endpoint', function(){
   //Executed on successful ajax request
-}).done(function(){
-  //Executed on successful ajax request
-});
+})
             </code></pre>
         </article>
         <article>
             <pre><code>
-var dfd = $.ajax( '/endpoint', function(){
+$.ajax( '/endpoint' )
+  .done(function(){
+    //Executed on successful ajax request
+  });
+            </code></pre>
+        </article>
+        <article>
+            <pre><code>
+$.ajax( '/endpoint', function(){
+  //Executed on successful ajax request
+})
+            </code></pre>
+            <pre><code>
+$.ajax( '/endpoint' )
+  .done(function(){
+    //Executed on successful ajax request
+  });
+            </code></pre>
+        </article>
+        <article>
+            <p>
+                What if I want conditional callbacks?
+            </p>
+        </article>
+        <article>
+            <pre><code>
+if( condition ){
+
+    $.ajax( '/endpoint', function(){ } );
+} else {
+
+    $.ajax( '/endpoint', function(){ } );
+}
+            </code></pre>
+        </article>
+
+        <article>
+            <pre><code>
+$.ajax( '/endpoint',
+    condition ? function(){ } : function(){ } );
+            </code></pre>
+        </article>
+        <article>
+            <pre><code>
+var deferred = $.ajax( '/endpoint', function(){
 
 });
 
-dfd.done(function(){
-    //Only bind on true condition
-});
+if( condition ){
+
+  deferred.done(function(){
+
+  });
+}
 
             </code></pre>
+        </article>
+        <article>
+            <ul>
+                <li>done()</li>
+                <li>fail()</li>
+                <li>resolve()</li>
+                <li>reject()</li>
+                <li>pipe()</li>
+                <li>promise()</li>
+            </ul>
+            <p style="font-size:18px;" class="rainbow"> Also... always, isResolved, isRejected, notify, notifyWith, progress, rejectWith, state, then, when</p>
+        </article>
+        <article>
+            <div class="green-triangle" style="float: left;">
+                <img src="deferred.png" class="small-deferred" />
+                <img src="lightning.png" class="small-lightning" />
+                <img src="lightning.png" class="small-lightning" />
+                <img src="lightning.png" class="small-lightning" />
+            </div>
+            <p>
+                Let me know when all three data calls complete
+            </p>
+        </article>
+        <article>
+            <div class="green-triangle" style="float: left;">
+                <img src="deferred.png" class="small-deferred" />
+                <img src="lightning.png" class="small-lightning" />
+                <img src="lightning.png" class="small-lightning" />
+                <img src="lightning.png" class="small-lightning" />
+            </div>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 200px;" />
+
+            </p>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 200px;" class="flip" />
+            </p>
+        </article>
+        <article>
+            <div class="green-triangle" style="float: left;">
+                <img src="deferred.png" class="small-deferred" />
+                <img src="lightning.png" class="small-lightning" />
+                <img src="lightning.png" class="small-lightning" />
+                <img src="lightning.png" class="small-lightning" />
+            </div>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 200px;" />
+            </p>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 200px;" class="flip" />
+            </p>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 400px;" />
+            </p>
+            <p class="clear">
+                <img src="arrow.png" style="height: 48px; width: 400px;" class="flip" />
+            </p>
         </article>
         <article>
             <div class="green-triangle" style="float: left;">
@@ -127,7 +287,7 @@ dfd.done(function(){
                 <img src="arrow.png" class="flip" />
             </p>
             <p class="clear red">
-                Resolve!
+                Three pieces of data retrieved
             </p>
         </article>
         <article>
@@ -141,6 +301,7 @@ dfd.done(function(){
 $.getJSON( '/endpoint', function( data ){
 
   if( data.success === true ){
+
     dfd.resolve( data );
   }
 });
@@ -169,10 +330,13 @@ var safe = dfd.promise();
             <h2>Now for cool stuff</h2>
         </article>
         <article>
-            <pre><code>jQuery.pipe( [doneFilter] [,failFilter] )</code></pre>
+            <pre><code>deferred.pipe( [doneFilter] [,failFilter] )</code></pre>
         </article>
         <article>
             <p>Chain Asynchronous actions</p>
+        </article>
+        <article>
+            <img src="drew.jpg" />
         </article>
         <article>
 <pre><code>
@@ -180,9 +344,8 @@ $.ajax( 'url1', function(){
 
   $.ajax( 'url2', function(){
 
-    $.ajax( 'url3', function(){});
-
   });
+
 });
 </code></pre>
         </article>
@@ -190,39 +353,47 @@ $.ajax( 'url1', function(){
             <h2>NO</h2>
         </article>
         <article>
-<pre><code>
-$.ajax( 'url1', function(){
+            <pre><code>
+var dfd = $.ajax( 'url1', function(){
 
 }).pipe(function(){
 
   return $.ajax( 'url2', function(){ });
 
-}).pipe(function(){
-
-  return $.ajax( 'url3', function(){ });
+})
+            </code></pre>
+            <pre><code>
+dfd.done(function(){
 
 });
-</code></pre>
+            </code></pre>
         </article>
         <article>
-<pre><code>
-function( defer ){
+            <pre><code>
+var dfd = $.ajax( 'url1' ).pipe(function( value ){
 
-  return defer.pipe(function(){
+    return value * 2;
+});
 
-    return $.Deferred.done(function(){
+dfd.done(function(){
 
-      return '
-    });
-  });
-};
-</code></pre>
+});
+            </code></pre>
         </article>
         <article>
-            <h2>Learn more <a href="https://github.com/jquery/jquery/blob/master/src/deferred.js">jquery/src/deferred.js</a></h2>
+            <style>
+                .gist, .gist-highlight pre {
+                  font-size: 16px;
+                }
+
+            </style>
+            <script src="https://gist.github.com/1219564.js?file=nResolve.js"></script>
         </article>
         <article>
-            <h2>Talk to a <a href="https://github.com/jquery/jquery/commit/a41f2406748e3113751ab1e5b5d990d9144123fc">jQuery contributor</a></h2>
+            <h2>Learn more <a target="blank" href="https://github.com/jquery/jquery/blob/master/src/deferred.js">jquery/src/deferred.js</a></h2>
+        </article>
+        <article>
+            <h2>Talk to a <a href="https://github.com/jquery/jquery/commit/a41f2406748e3113751ab1e5b5d990d9144123fc#commitcomment-1448982" target="blank">jQuery contributor</a></h2>
         </article>
     </div>
 </body>
